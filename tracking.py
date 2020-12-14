@@ -15,6 +15,7 @@ url = baseUrl + quote_plus(plusUrl)
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get(url)
 driver.find_element_by_class_name('ke-btn-search').click()
+driver.implicitly_wait(30)  #작동이 되지 않음... 
 time.sleep(2)
 
 
