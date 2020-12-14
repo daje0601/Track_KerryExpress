@@ -1,5 +1,15 @@
-from flask import Flask, render_template, request
+from urllib.parse import quote_plus
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from webdriver_manager.chrome import ChromeDriverManager
+import requests
+import time
+
+from flask import Flask, render_template, request, redirect
 #request는 우리가 입력한 자료를 받아오기 위해서 import하는거야 
+
+db = {}
 
 app = Flask("SuperScrapeer")
 
@@ -10,7 +20,43 @@ def home():
 @app.route("/report")
 def report():
     word = request.args.get("word")
-    return render_template("report.html", searchingBy=word)
+    if word :
+        word = word.lower()
+        db[word]
+        
+        #우리가 원하는 사이트를 들어가서 사용자가 송장번호 입력할 수 있음 
+        baseUrl = 'https://th.kerryexpress.com/th/track/?track='
+        plusUrl = word
+
+        #입력된 송장번호로 검색 
+        url = baseUrl + quote_plus(plusUrl)
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.get(url)
+        driver.find_element_by_class_name('ke-btn-search').click()
+        time.sleep(2)
+
+
+        #배송정보를 스크랩 
+        html = driver.page_source
+        soup = BeautifulSoup(html, "html.parser")
+        table = soup.find_all("div", {"class": "d-flex flex-column flex-sm-row flex-fill pl-3"})
+        times = soup.find_all("div", {"class":"text-sm-right d-flex flex-column py-2"})
+ 
+        places = []
+        for info in table:
+            places.append(info.find("span", {"class":"header bold"}).text)
+            places.append(info.find("span", {"class": "text-1418 light"}).text)            
+
+        dates = []
+        for time in times:
+            dates.append(time.find("span", {"class": "text-1418 light"}).text)
+        
+        
+        driver.close()
+    else:
+        return redirect("/")
+
+    return render_template("report.html", searchingBy=word, places=places, dates=dates)
 
 app.run(host="127.0.0.1")
 
