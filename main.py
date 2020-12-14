@@ -46,20 +46,18 @@ def report():
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find_all("div", {"class": "d-flex flex-column flex-sm-row flex-fill pl-3"})
-    times = soup.find_all("div", {"class":"text-sm-right d-flex flex-column py-2"})
+    dates = soup.find_all("div", {"class":"text-sm-right d-flex flex-column py-2"})
 
     places = []
     for info in table:
         places.append(info.find("span", {"class":"header bold"}).text)
         places.append(info.find("span", {"class": "text-1418 light"}).text)            
 
-    dates = []
-    for time in times:
-        dates.append(time.find("span", {"class": "text-1418 light"}).text)
-    
+    arrive_tiem = []
+    for date in dates:
+        arrive_tiem.append(date.find("span", {"class": "text-1418 light"}).text)
     
     driver.close()
-
 
     return render_template("report.html", searchingBy=word, places=places, dates=dates)
 
