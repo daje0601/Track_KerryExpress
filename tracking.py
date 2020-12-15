@@ -2,7 +2,6 @@ from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
 import requests
 import time
 
@@ -12,10 +11,10 @@ plusUrl = "sly2000312465"
 
 #입력된 송장번호로 검색 
 url = baseUrl + quote_plus(plusUrl)
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome()
 driver.get(url)
 driver.find_element_by_class_name('ke-btn-search').click()
-driver.implicitly_wait(30)  #작동이 되지 않음... 
+
 time.sleep(2)
 
 

@@ -6,26 +6,37 @@
         <title>Document</title>
         <style>
             section {
-                display : grid;
-                grid-template-columns: repeat(2, 1fr);
+                display : flex;
+                
             }
+
         </style>
     </head>
     <body>
         <h1>Search Results</h1>
         <h3>you are looking for {{searchingBy}}</h3>
         <section>
-            <h4>places</h4>
-            {% for local in places %}
-                <span>{{local.replaces}}</span> 
-                
-            {% endfor %}
-
-            <h4>dates</h4>
-            {% for time in dates %}
-                <span>{{time.dates}}</span> 
-                
-            {% endfor %}
+            <div>
+                <h4>title</h4>
+                {% for title in titles %}
+                    <li>{{title}}</li> 
+                {% endfor %}
+            </div>
+            
+            <div>
+                <h4>places</h4>
+                {% for local in places %}
+                    <li>{{local}}</li> 
+                {% endfor %}
+            </div>
+            
+            <div>
+                <h4>arrives</h4>
+                {% for arrive in arrives %}
+                    <li>{{arrive}}</li> 
+                {% endfor %}
+            </div>
+            
         </section>
     </body>
 </html>
