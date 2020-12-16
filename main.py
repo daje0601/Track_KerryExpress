@@ -1,7 +1,6 @@
 from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 import requests
 import time
 from flask import Flask, render_template, request, redirect
@@ -29,8 +28,12 @@ def report():
 
 
     #입력된 송장번호로 검색 
+    options = webdriver.ChromeOptions()
+    options.add_argument("headless")
+    options.add_argument("window-size=1920x1080")
+    options.add_argument("disable-gpu")
+    driver = webdriver.Chrome(options=options)
     url = baseUrl + quote_plus(plusUrl)
-    driver = webdriver.Chrome()
     driver.get(url)
     driver.find_element_by_class_name('ke-btn-search').click()
     time.sleep(2)
