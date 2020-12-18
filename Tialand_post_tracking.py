@@ -1,16 +1,15 @@
-from urllib.parse import quote_plus
+from thailandpost_track import ThailandpostTrack
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 import requests
-import time
+from thailandpost_track import Language
+from thailandpost_track import StatusCode
+import json
 
-baseUrl = "https://track.thailandpost.co.th/?lang=en"
-headers = {"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"}
-driver = webdriver.Chrome()
-driver.get(baseUrl)
-elem = driver.find_element_by_class_name("input-track")
-# elem.send_keys("ED384490065TH")
-# elem.send_keys(Keys.RETURN)
 
-# time.sleep(2)
+TOKEN_KEY = "CAI:JfJhCVI?VHJQV~C!IkGYSaQsNfOCN~Z0Y8JAA$N~BmHMU6AoMnZPX-RbCBZKSZP-JWQGVwDyZ8EABYZJMMDHA&LNU5MqQ!F6"
+thp = ThailandpostTrack(token_key=TOKEN_KEY)
+
+
+barcode = ['ED384490065TH']
+thp.track(barcode=barcode, status=StatusCode.FINAL_DELIVERY, language=Language.EN)
+thp.expire()
