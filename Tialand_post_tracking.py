@@ -12,4 +12,3 @@ thp = ThailandpostTrack(token_key=TOKEN_KEY)
 
 barcode = ['ED384490065TH']
 thp.track(barcode=barcode, status=StatusCode.FINAL_DELIVERY, language=Language.EN)
-thp.expire()
