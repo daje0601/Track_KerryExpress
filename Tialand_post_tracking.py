@@ -6,9 +6,9 @@ from thailandpost_track import StatusCode
 import json
 
 
-TOKEN_KEY = "CAI:JfJhCVI?VHJQV~C!IkGYSaQsNfOCN~Z0Y8JAA$N~BmHMU6AoMnZPX-RbCBZKSZP-JWQGVwDyZ8EABYZJMMDHA&LNU5MqQ!F6"
+TOKEN_KEY = "HLEAN!R#ZTS?JFKzE*TxFYBMSqPSWNGhWKFxGMOUI=AxI~LgO#S+NSDxX@W6UnM;NIHlQBPZVVT%FaUzL3DjPQR*K:APNES9ZXY5"
 thp = ThailandpostTrack(token_key=TOKEN_KEY)
 
 
-barcode = ['ED384490065TH']
-thp.track(barcode=barcode, status=StatusCode.FINAL_DELIVERY, language=Language.EN)
+# barcode = ['EF582568151TH']
+# thp.track(barcode=barcode, status=StatusCode.FINAL_DELIVERY, language=Language.EN, encoding="UTF-8")
