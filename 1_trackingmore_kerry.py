@@ -10,7 +10,7 @@ headers = {
 	"Trackingmore-Api-Key":"56e3999a-a656-4d00-b7ff-fae386fed96a",
 }
 
-tracking_number = input()
+tracking_number = "SHP5047646158"
 data = {
 	'tracking_number': tracking_number
 }
