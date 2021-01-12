@@ -39,7 +39,3 @@ print(realtime_res.raise_for_status) # 200이 아니면 에러
 pprint.pprint(json.loads(realtime_res.text))
 
 
-# url = 'http://api.trackingmore.com/v2/carriers/detect'
-# RelUrl = url + urlStr
-# req = urllib.request.Request(RelUrl,requestData.encode('utf-8'), headers=headers,method="GET")
-# result = urllib.request.urlopen(req).read()
