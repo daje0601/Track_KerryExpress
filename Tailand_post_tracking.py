@@ -4,11 +4,20 @@ import requests
 from thailandpost_track import Language
 from thailandpost_track import StatusCode
 import json
+import pprint
+
+ENDPOINTS = {
+    "API_ROOT": " https://trackapi.thailandpost.co.th",
+    "AUTHENTICATE_TOKEN_PATH": "/post/api/v1/authenticate/token",
+    "TRACK_PATH": "/post/api/v1/track",
+}
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "NNB5IdB:CFSwFNW-FDW:ZVM0V*XlJPPLB9U!AxUHLnR=O;CUXbWHRDVYRXYeInRsScAAUQJZYpBfPBQlXpS7ESIwFTH1L5S4HjX9",
+}
 
 
-TOKEN_KEY = "HLEAN!R#ZTS?JFKzE*TxFYBMSqPSWNGhWKFxGMOUI=AxI~LgO#S+NSDxX@W6UnM;NIHlQBPZVVT%FaUzL3DjPQR*K:APNES9ZXY5"
-thp = ThailandpostTrack(token_key=TOKEN_KEY)
-
+barcode = "EF582568151TH"
+thp = ThailandpostTrack(ENDPOINTS, headers=headers, data=barcode)
 print(thp)
-# barcode = ['EF582568151TH']
-# thp.track(barcode=barcode, status=StatusCode.FINAL_DELIVERY, language=Language.EN, encoding="UTF-8")
