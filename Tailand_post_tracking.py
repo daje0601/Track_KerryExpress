@@ -6,18 +6,12 @@ from thailandpost_track import StatusCode
 import json
 import pprint
 
-ENDPOINTS = {
-    "API_ROOT": " https://trackapi.thailandpost.co.th",
-    "AUTHENTICATE_TOKEN_PATH": "/post/api/v1/authenticate/token",
-    "TRACK_PATH": "/post/api/v1/track",
-}
+token = "NNB5IdB:CFSwFNW-FDW:ZVM0V*XlJPPLB9U!AxUHLnR=O;CUXbWHRDVYRXYeInRsScAAUQJZYpBfPBQlXpS7ESIwFTH1L5S4HjX9"
 
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": "NNB5IdB:CFSwFNW-FDW:ZVM0V*XlJPPLB9U!AxUHLnR=O;CUXbWHRDVYRXYeInRsScAAUQJZYpBfPBQlXpS7ESIwFTH1L5S4HjX9",
-}
+thp = ThailandpostTrack(token)
+
+barcode = ["EF582568151TH"]
+track = thp.track(barcode=barcode, status=StatusCode.ALL, language=Language.EN)
 
 
-barcode = "EF582568151TH"
-thp = ThailandpostTrack(ENDPOINTS, headers=headers, data=barcode)
-print(thp)
+print(track)
